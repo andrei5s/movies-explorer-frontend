@@ -1,0 +1,20 @@
+.header__line {
+    display: none;
+}
+
+@media screen and (max-width: 1023px) {
+    .header__line {
+        display: block;
+        margin-top: 7px;
+        margin: 4px 0 0 0;
+        width: 72px;
+        border-bottom: 1px solid;
+        border-color: #000000;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .header__line {
+        margin-top: 7px;
+    }
+}

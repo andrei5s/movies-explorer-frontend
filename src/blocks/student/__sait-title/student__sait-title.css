@@ -1,0 +1,25 @@
+.student__sait-title {
+    margin-top: 20px;
+    margin-bottom: 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 50px;
+    letter-spacing: -0.04em;
+    color: #000000;
+}
+
+@media screen and (max-width: 1023px) {
+    .student__sait-title {
+        font-size: 28px;
+        line-height: 50px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .student__sait-title {
+        font-size: 18px;
+        line-height: 28px;
+    }
+}

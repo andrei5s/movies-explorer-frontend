@@ -1,0 +1,27 @@
+.student__sait-arrow {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 60px;
+    letter-spacing: -0.04em;
+    color: #000000;
+    width: 29px;
+    height: 60px;
+}
+
+@media screen and (max-width: 1023px) {
+    .student__sait-arrow {
+        font-size: 28px;
+        width: 27px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .student__sait-arrow {
+        font-size: 18px;
+        line-height: 28px;
+        width: 18px;
+        height: 28px;
+    }
+}

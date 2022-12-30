@@ -1,0 +1,21 @@
+.technologi__subtitle {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: -0.04em;
+    color: #000000;
+    margin: 26px auto 0 auto;
+    width: 460px;
+}
+
+@media screen and (max-width: 767px) {
+    .technologi__subtitle {
+        width: 292px;
+        margin-top: 24px;
+        font-size: 11px;
+        line-height: 16px;
+    }
+}

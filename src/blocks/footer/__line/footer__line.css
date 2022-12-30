@@ -1,0 +1,6 @@
+.footer__line {
+    margin: 20px auto 0 auto;
+    border-bottom: 1px solid;
+    border-bottom-color: #E8E8E8;
+    width: 88%;
+}

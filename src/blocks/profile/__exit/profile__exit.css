@@ -1,0 +1,30 @@
+.profile__exit {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    color: #EE3465;
+    text-decoration: none;
+    margin: 16px auto 70px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+}
+
+@media screen and (max-width: 1023px) {
+    .profile__exit {
+        margin-bottom: 269px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .profile__exit {
+        font-size: 12px;
+        line-height: 15px;
+        margin-bottom: 40px;
+    }
+}

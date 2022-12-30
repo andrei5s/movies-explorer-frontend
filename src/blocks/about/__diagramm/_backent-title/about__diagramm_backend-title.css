@@ -1,0 +1,19 @@
+.about__diagramm_backend-title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #000000;
+    background: #2BE080;
+    margin: 0;
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
+
+@media screen and (max-width: 767px) {
+    .about__diagramm_backend-title {
+        width: 100px;
+    }
+}

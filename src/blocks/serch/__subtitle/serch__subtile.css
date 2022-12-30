@@ -1,0 +1,15 @@
+.serch__subtitle {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    color: #000000;
+    margin: 6px auto 0 14px;
+}
+
+@media screen and (max-width: 767px) {
+    .serch__subtitle {
+        font-size: 11px;
+    }
+}

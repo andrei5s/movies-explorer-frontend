@@ -1,0 +1,11 @@
+.serch__button {
+    margin-left: 46px;
+    background-image: url(../../../images/search-button.svg);
+    background-repeat: no-repeat;
+    width: 34px;
+    height: 34px;
+    font-size: 0;
+    border: none;
+    cursor: pointer;
+    background-color: #ffff;
+}

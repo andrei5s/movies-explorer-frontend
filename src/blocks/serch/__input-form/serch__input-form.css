@@ -1,0 +1,12 @@
+.serch__input-form {
+    width: 71%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 767px) {
+    .serch__input-form {
+        width: 100%;
+    }
+}

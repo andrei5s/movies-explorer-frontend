@@ -1,0 +1,10 @@
+.serch__short {
+    display: flex;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 767px) {
+    .serch__short {
+        margin: 46px auto 0 auto;
+    }
+}

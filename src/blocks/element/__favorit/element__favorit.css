@@ -1,0 +1,17 @@
+.element__favourit {
+    opacity: 0;
+    width: 30px;
+    height: 30px;
+    background-image: url(../../../images/flag.svg);
+    background-color: #2BE080;
+    background-repeat: no-repeat;
+    border-radius: 36px;
+    margin: 19px 14px 19px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.element__favourit:hover {
+    opacity: 1;
+}
