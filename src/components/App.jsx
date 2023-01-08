@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import Main from './Main';
 import Movies from './Movies';
 import SavedMovies from './SavedMovies';
@@ -25,35 +25,35 @@ function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [moreCards, setMoreCards] = useState(0);
   const [savedMovies, setSavedMovies] = useState([]);
+  const location = useLocation;
   
-  useEffect(() => {
-    setIsLoading(true);
-
-    Promise.all([mainApi.getProfile(), mainApi.getMovies()])
-      .then(([currentUserData, savedMovies]) => {
-        setCurrentUser(currentUserData);
-        setSavedMovies(savedMovies);
+  function getSavedMovies() {
+    mainApi.getMovies()
+      .then((savedMovies) => {
+        setSavedMovies(savedMovies)
       })
-      .catch((err) => console.log(err))
-      .finally(() => setIsLoading(false));
+      .catch((err) => {
+        console.log(err.message)
+      })
+  }
+
+  useEffect(() => {  
+    
+    const path = location.pathname
+    mainApi.getProfile()
+    .then((currentUserData) => {
+      setLoggedIn(true);
+      navigate.push(path);
+      setCurrentUser(currentUserData);
+      getSavedMovies();
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
+    .finally(() => setIsLoading(false));
   }, []);
 
-  useEffect(() => {
-    setIsLoading(true);
-
-    if (loggedIn)
-      mainApi
-        .getProfile()
-        .then((currentUserData) => {
-          setCurrentUser(currentUserData);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => setIsLoading(false));
-  }, [loggedIn]);
-
-  function handleEditProfile({ name, email }) {
+  const handleEditProfile = ({ name, email }) => {
     mainApi
       .editProfile({ name, email })
       .then((currentUserData) => {
@@ -82,7 +82,7 @@ function App() {
       }
     };
     tokenCheck();
-  }, []);
+  }, [navigate]);
 
   const handleLogin = (email, password) => {
     return auth
@@ -104,7 +104,7 @@ function App() {
   useEffect(() => {
     if (!loggedIn) return;
     navigate.push("/movies");
-  }, [loggedIn]);
+  }, [navigate, loggedIn]);
 
   const handleRegister = (name, email, password) => {
     return auth
@@ -130,7 +130,7 @@ function App() {
   useEffect(() => {
     if (!loggedIn) return;
     navigate.push("/movies");
-  }, [loggedIn]);
+  }, [loggedIn, navigate]);
 
 
 
@@ -253,10 +253,10 @@ function App() {
           handleSignOut={handleSignOut}
         />} />  
           <Route path="/signin" element={<Login
-           hendleLogin={handleLogin}
+           onLogin={handleLogin}
            errorMessage={errorMessage}
            />} />
-          <Route path="/signup" element={<Register handleRegister={handleRegister} errorMessage={errorMessage} />} />
+          <Route path="/signup" element={<Register onRegister={handleRegister} errorMessage={errorMessage} />} />
           <Route path="*"
              element={<ErrorPage />} />     
         </Routes> 

@@ -13,7 +13,8 @@ class MainApi {
 
     getProfile() {
         return fetch(`${this._baseUrl}/users/me`, {
-                headers: this._headers
+                headers: this._headers,
+                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
             })
             .then(this._getResponseData)
     }
@@ -29,6 +30,7 @@ class MainApi {
         return fetch(`${this._baseUrl}/users/me`, {
                 method: "PATCH",
                 headers: this._headers,
+                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 body: JSON.stringify({
                     name: name,
                     email: email
@@ -68,8 +70,10 @@ class MainApi {
 }
 
 export const mainApi = new MainApi({
-    baseUrl: 'https://api.movie.andrei5s.nomoredomains.club',
+   // baseUrl: 'https://api.movie.andrei5s.nomoredomains.club',
+    baseUrl: 'http://localhost:3000',
     headers: {
+        
         'Content-Type': 'application/json'
     }
 });
