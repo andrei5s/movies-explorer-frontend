@@ -22,6 +22,7 @@ function Movies(props) {
           serverError={props.serverError}
           loading={props.loading}
         />
+        <button className="elements__button" onClick={props.handleShowMore} type="button">Ещё</button>
       </main>
       <Footer />
     </>

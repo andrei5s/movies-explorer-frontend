@@ -1,5 +1,4 @@
 .element__delete {
-    opacity: 0;
     width: 30px;
     height: 30px;
     background-image: url(../../../images/delete.svg);
@@ -10,8 +9,5 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.element__delete:hover {
-    opacity: 1;
+    border: none;
 }

@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
-import HeaderAuth from "./Header";
 import useFormValidation from '../hooks/useFormValidator';
 
 const Register = (props) => {
@@ -30,7 +29,6 @@ const Register = (props) => {
 
   return (
     <>
-    <HeaderAuth />
     <section className="register">
             <Logo />
             <h1 className="title">Добро пожаловать!</h1>
@@ -42,7 +40,9 @@ const Register = (props) => {
                 placeholder="Имя"
                 className="form__input"
                 onChange={handleChange}
-                value={state.name}
+                value={state.name || ''}
+                minLength="2"
+                maxLength="30"
                 required
                 />
                 {errors?.name && <span className="error form__input-error">{errors.name}</span>}
@@ -54,7 +54,7 @@ const Register = (props) => {
                 placeholder="Email"
                 className="form__input"
                 onChange={handleChange}
-                value={state.email}
+                value={state.email || ''}
                 required
                 />
                 {errors?.name && <span className="error form__input-error">{errors.name}</span>}
@@ -66,7 +66,7 @@ const Register = (props) => {
                 placeholder="Пароль"
                 className="form__input"
                 onChange={handleChange}
-                value={state.password}
+                value={state.password || ''}
                 required
                 />
                 <div className="form__line"></div>

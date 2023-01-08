@@ -1,4 +1,4 @@
-class Api {
+class MainApi {
     constructor({ baseUrl, headers }) {
         this._headers = headers;
         this._baseUrl = baseUrl;
@@ -25,13 +25,13 @@ class Api {
             .then(this._getResponseData)
     }
 
-    editProfile({ name, about }) {
+    editProfile({ name, email }) {
         return fetch(`${this._baseUrl}/users/me`, {
                 method: "PATCH",
                 headers: this._headers,
                 body: JSON.stringify({
                     name: name,
-                    about: about
+                    email: email
                 })
             })
             .then(this._getResponseData)
@@ -67,8 +67,8 @@ class Api {
     }
 }
 
-export const api = new Api({
-    baseUrl: 'http://api.movie.andrei5s.nomoredomains.club',
+export const mainApi = new MainApi({
+    baseUrl: 'https://api.movie.andrei5s.nomoredomains.club',
     headers: {
         'Content-Type': 'application/json'
     }

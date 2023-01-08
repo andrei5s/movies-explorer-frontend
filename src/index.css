@@ -48,6 +48,7 @@
 @import url(./blocks/student/__portfolio/student__portfolio.css);
 @import url(./blocks/student/__sait/student__sait.css);
 @import url(./blocks/student/__sait-title/student__sait-title.css);
+@import url(./blocks/student/__sait-list/student__sait-list.css);
 @import url(./blocks/student/__sait-link/__sait-link.css);
 @import url(./blocks/student/__sait-arrow/student__sait-arrow.css);
 @import url(./blocks/student/__sait-line/student__sait-line.css);

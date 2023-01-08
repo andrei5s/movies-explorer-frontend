@@ -12,7 +12,7 @@
     padding-bottom: 9px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 500px) {
     .about__diagramm_backend-title {
         width: 100px;
     }

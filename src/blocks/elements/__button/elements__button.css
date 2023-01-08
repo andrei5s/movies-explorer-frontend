@@ -2,7 +2,7 @@
     width: 320px;
     height: 36px;
     margin: 80px auto 80px auto;
-    background-color: #E8E8E8;
+    background-color: #ffffff;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
@@ -13,4 +13,5 @@
     text-align: center;
     justify-content: center;
     color: #000000;
+    border-color: #e8e8e8;
 }

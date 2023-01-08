@@ -35,7 +35,9 @@ function MoviesCard(props) {
             </div>
         {props.isOnlySaved ? <button className="element__delete" onClick={handleCardDelete} type="button"><img src="/images/icon-delete.svg" className="element__delete-image" alt="крестик" /></button> :
         (props.isSaved(props.card) ? <button className="element__favourit-save" onClick={handleCardDelete} type="button"><img src={flag} className="element__favorit-image" alt="флажек" /></button> :
-            <button className="element__favourit" onClick={handleCardSave} type="button"><img src={flag} className="element__favorit-image" alt="флажек" /></button>)}
+            <button className="element__favourit" onClick={handleCardSave} type="button"><img src={flag} className="element__favorit-image" alt="флажек" /></button>
+            
+            )}
                 </div>
                 <a className="element__movie" href={trailerLink} rel="noreferrer" target="_blank">
                 <img src={poster} alt="Постер" className="element__image" />

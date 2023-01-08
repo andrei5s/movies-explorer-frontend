@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
-import HeaderAuth from './Header';
 import useFormValidation from '../hooks/useFormValidator'
 
 const initValues = {
@@ -32,7 +31,6 @@ const Login = (props) => {
 
   return (
     <>
-    <HeaderAuth />
     <section className="register">
             <Logo />
             <h1 className="title">Рады видеть!</h1>

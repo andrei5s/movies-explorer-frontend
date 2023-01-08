@@ -23,7 +23,7 @@ function MoviesCardList(props) {
         }
       </section>
      
-          <button className="elements__button" onClick={props.handleShowMore} type="button">Ещё</button>
+          
     </>
   )
 }

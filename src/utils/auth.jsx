@@ -1,5 +1,4 @@
-//const BASE_URL = "https://auth.nomoreparties.co";
-const BASE_URL = 'http://api.movie.andrei5s.nomoredomains.club'
+const BASE_URL = 'https://api.movie.andrei5s.nomoredomains.club';
 
 const reqest = ({
     url,

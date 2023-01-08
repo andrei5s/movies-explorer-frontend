@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import Main from './Main';
 import Movies from './Movies';
 import SavedMovies from './SavedMovies';
@@ -8,12 +8,13 @@ import Register from './Register';
 import Login from './Login';
 import ErrorPage from './ErrorPage';
 import * as auth from "../utils/auth";
-import { api } from "../utils/Api";
+import { mainApi } from "../utils/MainApi";
 import moviesApi from "../utils/moviesApi";
 import CurrentUserContext from "../context/currentUserContext";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
- const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
@@ -25,12 +26,23 @@ function App() {
   const [moreCards, setMoreCards] = useState(0);
   const [savedMovies, setSavedMovies] = useState([]);
   
+  useEffect(() => {
+    setIsLoading(true);
+
+    Promise.all([mainApi.getProfile(), mainApi.getMovies()])
+      .then(([currentUserData, savedMovies]) => {
+        setCurrentUser(currentUserData);
+        setSavedMovies(savedMovies);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
+  }, []);
 
   useEffect(() => {
     setIsLoading(true);
 
     if (loggedIn)
-      api
+      mainApi
         .getProfile()
         .then((currentUserData) => {
           setCurrentUser(currentUserData);
@@ -41,6 +53,18 @@ function App() {
         .finally(() => setIsLoading(false));
   }, [loggedIn]);
 
+  function handleEditProfile({ name, email }) {
+    mainApi
+      .editProfile({ name, email })
+      .then((currentUserData) => {
+        setCurrentUser(currentUserData);
+      })
+      .catch((err) => {
+        setErrorMessage('Что-то пошло не так...')
+        console.log(err);
+      });
+  }
+
   useEffect(() => {
     const tokenCheck = () => {
       const jwt = localStorage.getItem("jwt");
@@ -49,7 +73,7 @@ function App() {
           .checkToken(jwt)
           .then((res) => {
             if (res?.data?.email) {
-              setEmail(res.data.email);
+              setEmail(res.email);
               setLoggedIn(true);
               navigate.push("/movies");
             }
@@ -60,7 +84,6 @@ function App() {
     tokenCheck();
   }, []);
 
-
   const handleLogin = (email, password) => {
     return auth
       .login(email, password)
@@ -69,33 +92,47 @@ function App() {
           return Promise.reject("No data");
         }
         localStorage.setItem("jwt", data.token);
-        setEmail(data.email);
+        setEmail(email);
         setLoggedIn(true);
-        navigate.push("/movies");
       })
       .catch((err) => {
+        setErrorMessage('Что-то пошло не так...')
         console.log(err);
       });
   };
 
-  /*React.useEffect(() => {
+  useEffect(() => {
     if (!loggedIn) return;
     navigate.push("/movies");
-  }, [loggedIn]);*/
-
+  }, [loggedIn]);
 
   const handleRegister = (name, email, password) => {
     return auth
       .register(name, email, password)
       .then((res) => {
         console.log(res);
-        handleLogin(email, password)
         navigate.push("/signin");
       })
       .catch((err) => {
-        console.log(err);
+        setErrorMessage('Что-то пошло не так...')
+        console.log(err)
       });
   };
+
+  function handleSignOut() {
+    localStorage.removeItem("jwt");
+    setCurrentUser({});
+    setLoggedIn(false);
+    navigate.push("/signin");
+  }
+
+
+  useEffect(() => {
+    if (!loggedIn) return;
+    navigate.push("/movies");
+  }, [loggedIn]);
+
+
 
   function checkWindowWidth() {
     setWindowWidth(window.innerWidth)
@@ -157,9 +194,9 @@ function App() {
   }
 
   function handleCardSave(movie) {
-    api.addMovie(movie)
+    mainApi.addMovie(movie)
       .then((movieData) => {
-        setSavedMovies([...savedMovies, movieData.data])
+        setSavedMovies([...savedMovies, movieData])
       })
       .catch((err) => {
         console.log(err.message)
@@ -169,7 +206,7 @@ function App() {
   function handleCardDelete(card) {
     const deleteCard = savedMovies.find(c => c.movieId === (card.id || card.movieId) && c.owner === currentUser._id)
     if (!deleteCard) return
-    api.deleteMovie(deleteCard._id)
+    mainApi.deleteMovie(deleteCard._id)
       .then(() => {
         setSavedMovies(savedMovies.filter(c => c._id !== deleteCard._id))
       })
@@ -178,59 +215,48 @@ function App() {
       })
   }
 
-  function handleEditProfile(name, email) {
-    api.editProfile({ name, email })
-      .then(() => {
-        setCurrentUser({ name, email })
-      })
-      .catch((err) => {
-        setErrorMessage('Что-то пошло не так...')
-        console.log(err.message)
-      })
-  }
-
-  function handleSignOut() {
-    localStorage.removeItem("jwt");
-    setCurrentUser({});
-    setLoggedIn(false);
-    navigate.push("/signin");
-  }
-
   return ( 
     <CurrentUserContext.Provider value={currentUser}>
     <div className="body">
       <div className="page">
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/movies" element={<Movies
+          <Route path="/" element={<Main loggedIn={loggedIn} />} />
+          <Route path="/movies" element={
           
+          <Movies
+          component={Movies}
+          loggedIn={loggedIn}
           handleSearch={handleSearch}
           defaultSearchValue={localStorage.getItem('searchMovieName') || ""}
           cards={movies}
           handleShowMore={handleShowMore}
           isSaved={isSaved}
           onCardSave={handleCardSave}
-          handleCardDelete={handleCardDelete}
+          onCardDelete={handleCardDelete}
           serverError={serverError}
           loading={isLoading}
-          />} /> 
+          />
+      
+          } /> 
           <Route path="/saved-movies" element={<SavedMovies 
-          
+          component={SavedMovies}
           loading={isLoading}
           cards={savedMovies}
           isSaved={isSaved}
-          handleCardDelete={handleCardDelete}
+          onCardDelete={handleCardDelete}
           serverError={serverError}
         />} />
           <Route path="/profile" element={<Profile
+          component={Profile}
           loggedIn={loggedIn}
           handleEditProfile={handleEditProfile}
           handleSignOut={handleSignOut}
         />} />  
           <Route path="/signin" element={<Login
-           onLogin={handleLogin}
+           hendleLogin={handleLogin}
+           errorMessage={errorMessage}
            />} />
-          <Route path="/signup" element={<Register onRegister={handleRegister} />} />
+          <Route path="/signup" element={<Register handleRegister={handleRegister} errorMessage={errorMessage} />} />
           <Route path="*"
              element={<ErrorPage />} />     
         </Routes> 
