@@ -14,7 +14,6 @@ import CurrentUserContext from "../context/currentUserContext";
 import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
-  const [email, setEmail] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
@@ -26,6 +25,18 @@ function App() {
   const [moreCards, setMoreCards] = useState(0);
   const [savedMovies, setSavedMovies] = useState([]);
   const location = useLocation;
+
+  function getProfile() {
+    mainApi.getProfile()
+      .then((userData) => {
+        setLoggedIn(true)
+        setCurrentUser(userData)
+        console.log(userData)
+      })
+      .catch((err) => {
+        console.log(err.message)
+      })
+  }
   
   function getSavedMovies() {
     mainApi.getMovies()
@@ -41,23 +52,26 @@ function App() {
     
     const path = location.pathname
     mainApi.getProfile()
-    .then((currentUserData) => {
+    .then((userData) => {
       setLoggedIn(true);
       navigate.push(path);
-      setCurrentUser(currentUserData);
+      setCurrentUser(userData);
       getSavedMovies();
+      
     })
     .catch((err) => {
-      console.log(err.message);
+      console.log(err);
+      
     })
     .finally(() => setIsLoading(false));
+    
   }, []);
 
-  const handleEditProfile = ({ name, email }) => {
+  const handleEditProfile = (name, email) => {
     mainApi
       .editProfile({ name, email })
-      .then((currentUserData) => {
-        setCurrentUser(currentUserData);
+      .then(() => {
+        setCurrentUser({ name, email });
       })
       .catch((err) => {
         setErrorMessage('Что-то пошло не так...')
@@ -72,28 +86,27 @@ function App() {
         auth
           .checkToken(jwt)
           .then((res) => {
-            if (res?.data?.email) {
-              setEmail(res.email);
+            if (res) {
               setLoggedIn(true);
-              navigate.push("/movies");
+              navigate.push(location.pathname);
             }
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            handleSignOut();
+            console.error(err);
+          });
       }
     };
     tokenCheck();
   }, [navigate]);
 
   const handleLogin = (email, password) => {
-    return auth
+     auth
       .login(email, password)
-      .then((data) => {
-        if (!data?.token) {
-          return Promise.reject("No data");
-        }
-        localStorage.setItem("jwt", data.token);
-        setEmail(email);
-        setLoggedIn(true);
+      .then(() => {
+        setLoggedIn(true)
+        navigate.push('/movies')
+        getProfile()
       })
       .catch((err) => {
         setErrorMessage('Что-то пошло не так...')
@@ -107,12 +120,11 @@ function App() {
   }, [navigate, loggedIn]);
 
   const handleRegister = (name, email, password) => {
-    return auth
-      .register(name, email, password)
-      .then((res) => {
-        console.log(res);
-        navigate.push("/signin");
-      })
+    auth.register(name, email, password)
+    console.log(name, email)
+    .then(() => {
+      handleLogin(email, password)
+    })
       .catch((err) => {
         setErrorMessage('Что-то пошло не так...')
         console.log(err)
@@ -253,10 +265,10 @@ function App() {
           handleSignOut={handleSignOut}
         />} />  
           <Route path="/signin" element={<Login
-           onLogin={handleLogin}
+           hendleLogin={handleLogin}
            errorMessage={errorMessage}
            />} />
-          <Route path="/signup" element={<Register onRegister={handleRegister} errorMessage={errorMessage} />} />
+          <Route path="/signup" element={<Register hendleRegister={handleRegister} errorMessage={errorMessage} />} />
           <Route path="*"
              element={<ErrorPage />} />     
         </Routes> 

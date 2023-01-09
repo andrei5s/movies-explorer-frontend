@@ -14,7 +14,6 @@ class MainApi {
     getProfile() {
         return fetch(`${this._baseUrl}/users/me`, {
                 headers: this._headers,
-                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
             })
             .then(this._getResponseData)
     }
@@ -71,9 +70,11 @@ class MainApi {
 
 export const mainApi = new MainApi({
    // baseUrl: 'https://api.movie.andrei5s.nomoredomains.club',
-    baseUrl: 'http://localhost:3000',
+   // baseUrl: 'http://localhost:3000',
+    baseUrl: process.env.REACT_APP_BASE_URL || 'http://localhost:3000',
     headers: {
         
         'Content-Type': 'application/json'
     }
 });
+  

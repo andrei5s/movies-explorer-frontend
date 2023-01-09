@@ -26,21 +26,20 @@ const Register = (props) => {
     const { name, email, password } = state;
     props.onRegister(name, email, password);
   };
-
   return (
     <>
     <section className="register">
             <Logo />
             <h1 className="title">Добро пожаловать!</h1>
-            <form className="form" onSubmit={handleSubmit}>
+            <form className="form" onSubmit={handleSubmit} action='#' noValidate>
                 <label className="form__indicator">Имя</label>
                 <input
                 type="name"
                 name="name"
                 placeholder="Имя"
-                className="form__input"
+                className="form__input"                
                 onChange={handleChange}
-                value={state.name || ''}
+                value={state.name}
                 minLength="2"
                 maxLength="30"
                 required
@@ -52,9 +51,9 @@ const Register = (props) => {
                 type="email"
                 name="email"
                 placeholder="Email"
-                className="form__input"
+                className="form__input"              
                 onChange={handleChange}
-                value={state.email || ''}
+                value={state.email}
                 required
                 />
                 {errors?.name && <span className="error form__input-error">{errors.name}</span>}
@@ -64,9 +63,9 @@ const Register = (props) => {
                 type="password"
                 name="password"
                 placeholder="Пароль"
-                className="form__input"
+                className="form__input"                       
                 onChange={handleChange}
-                value={state.password || ''}
+                value={state.password}
                 required
                 />
                 <div className="form__line"></div>

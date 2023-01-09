@@ -34,7 +34,7 @@ const Login = (props) => {
     <section className="register">
             <Logo />
             <h1 className="title">Рады видеть!</h1>
-            <form className="form" onSubmit={handleSubmit}>
+            <form className="form" onSubmit={handleSubmit} action='#' noValidate>
                 <label className="form__indicator">E-mail</label>
                 <input
                 type="email"

@@ -1,5 +1,5 @@
  //const BASE_URL = 'https://api.movie.andrei5s.nomoredomains.club';
-  const BASE_URL = 'http://localhost:3000';
+export const BASE_URL = 'http://localhost:3000';
 
 const reqest = ({
     url,
@@ -12,7 +12,7 @@ const reqest = ({
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                ...!!token && { 'Authorization': `Bearer ${token}` }
+                ...!!token && { 'Authorization': `Bearer ${"jwt"}` }
             },
             ...!!data && { body: JSON.stringify(data) }
         })
