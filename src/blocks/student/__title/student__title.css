@@ -1,0 +1,24 @@
+.student__title {
+    margin: 18px auto 0 6%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    color: #000000;
+    mix-blend-mode: normal;
+}
+
+@media screen and (max-width: 1023px) {
+    .student__title {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .student__title {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}

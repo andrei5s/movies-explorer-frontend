@@ -1,0 +1,6 @@
+.about__diagramm {
+    margin: 110px auto 0 auto;
+    display: flex;
+    flex-direction: row;
+    width: 88%;
+}

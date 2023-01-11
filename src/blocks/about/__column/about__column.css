@@ -1,0 +1,12 @@
+.about__column {
+    margin-top: 66px;
+    display: flex;
+    flex-direction: column;
+    width: 88%;
+}
+
+@media screen and (max-width: 767px) {
+    .about__column {
+        margin-top: 56px;
+    }
+}

@@ -1,0 +1,43 @@
+.serch__switch-btn {
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+    border-radius: 20px;
+    background: #bfbfbf;
+    z-index: 0;
+    margin: 6px 0 0 60px;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition-duration: 300ms;
+    appearance: none;
+}
+
+.serch__switch-btn::after {
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 8px;
+    background: #fff;
+    top: 2px;
+    left: 2px;
+    transition-duration: 300ms;
+    position: absolute;
+    z-index: 1;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.serch__switch-btn:checked {
+    background: #2BE080;
+}
+
+.serch__switch-btn:checked:after {
+    left: 19px;
+}
+
+@media screen and (max-width: 767px) {
+    .serch__switch-btn {
+        margin-left: 0;
+    }
+}

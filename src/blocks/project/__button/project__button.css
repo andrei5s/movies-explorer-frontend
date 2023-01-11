@@ -1,0 +1,21 @@
+.project__button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 151px auto 0 auto;
+    padding-bottom: 30px;
+    width: 308px;
+}
+
+@media screen and (max-width: 1023px) {
+    .project__button {
+        margin-top: 314px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .project__button {
+        width: 258px;
+        margin-top: 212px;
+    }
+}

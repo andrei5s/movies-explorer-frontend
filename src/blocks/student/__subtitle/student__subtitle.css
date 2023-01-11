@@ -1,0 +1,28 @@
+.student__subtitle {
+    width: 600px;
+    margin: 26px auto 0 6%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #000000;
+    mix-blend-mode: normal;
+}
+
+@media screen and (max-width: 1023px) {
+    .student__subtitle {
+        font-size: 12px;
+        line-height: 18px;
+        width: 364px;
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .student__subtitle {
+        font-size: 11px;
+        line-height: 16px;
+        width: 292px;
+    }
+}

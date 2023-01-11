@@ -1,0 +1,24 @@
+.header__index {
+    margin: 112px 0 0 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    text-decoration: none;
+    color: #000000;
+    display: none;
+}
+
+@media screen and (max-width: 1023px) {
+    .header__index {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .header__index {
+        margin-top: 106px;
+    }
+}

@@ -1,0 +1,16 @@
+.serch__input {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+    color: #A0A0A0;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 80%;
+    border: none;
+    background-image: url(../../../images/icon.svg);
+    background-repeat: no-repeat;
+    padding-left: 38px;
+}

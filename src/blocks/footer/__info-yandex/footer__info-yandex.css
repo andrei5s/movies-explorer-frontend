@@ -1,0 +1,22 @@
+.footer__info-yandex {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: right;
+    color: #000000;
+    margin-top: 20px;
+    margin-bottom: 0;
+    width: 120px;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 767px) {
+    .footer__info-yandex {
+        font-size: 12px;
+        line-height: 15px;
+        width: 111px;
+        margin: 30px auto 0 auto;
+    }
+}

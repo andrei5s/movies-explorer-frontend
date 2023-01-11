@@ -1,0 +1,4 @@
+.element__spicific {
+    display: flex;
+    flex-direction: column;
+}

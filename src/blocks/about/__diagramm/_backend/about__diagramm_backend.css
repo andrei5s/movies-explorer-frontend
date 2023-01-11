@@ -1,0 +1,5 @@
+.about__diagramm_backend {
+    width: 228px;
+    display: flex;
+    flex-direction: column;
+}

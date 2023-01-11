@@ -1,0 +1,25 @@
+.header__accaunt {
+    margin: 10px 0 0 auto;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 1023px) {
+    .header__accaunt {
+        margin: auto auto 98px auto;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .header__accaunt {
+        margin-bottom: 54px;
+    }
+}

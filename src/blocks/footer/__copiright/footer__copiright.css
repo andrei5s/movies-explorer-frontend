@@ -1,0 +1,12 @@
+.footer__copyright {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 767px) {
+    .footer__copyright {
+        flex-direction: column-reverse;
+    }
+}
