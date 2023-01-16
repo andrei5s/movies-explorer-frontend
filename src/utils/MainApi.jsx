@@ -13,14 +13,19 @@ class MainApi {
 
     getProfile() {
         return fetch(`${this._baseUrl}/users/me`, {
-                headers: this._headers,
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('token')}`, ...this._headers,
+                },
             })
             .then(this._getResponseData)
     }
 
+
     getMovies() {
         return fetch(`${this._baseUrl}/movies`, {
-                headers: this._headers
+               headers: {
+                authorization: `Bearer ${localStorage.getItem('token')}`, ...this._headers,
+            },
             })
             .then(this._getResponseData)
     }
@@ -28,8 +33,9 @@ class MainApi {
     editProfile({ name, email }) {
         return fetch(`${this._baseUrl}/users/me`, {
                 method: "PATCH",
-                headers: this._headers,
-                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('token')}`, ...this._headers,
+                },
                 body: JSON.stringify({
                     name: name,
                     email: email
@@ -41,7 +47,9 @@ class MainApi {
     addMovie(movie) {
         return fetch(`${this._baseUrl}/movies`, {
                 method: "POST",
-                headers: this._headers,
+               headers: {
+                authorization: `Bearer ${localStorage.getItem('token')}`, ...this._headers,
+            },
                 body: JSON.stringify({
                     country: movie.country || 'Нет данных',
                     director: movie.director,
@@ -59,21 +67,30 @@ class MainApi {
             .then(this._getResponseData)
     }
 
-    deleteMovie(id) {
-        return fetch(`${this._baseUrl}/movies/${id}`, {
+    deleteMovie(movieId) {
+        return fetch(`${this._baseUrl}/movies/${movieId}`, {
                 method: "DELETE",
-                headers: this._headers
+              headers: {
+                authorization: `Bearer ${localStorage.getItem('token')}`, ...this._headers,
+            },
+            })
+            .then(this._getResponseData)
+    }
+
+    deleteCard(cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}`, {
+                method: "DELETE",
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('token')}`, ...this._headers,
+                },
             })
             .then(this._getResponseData)
     }
 }
 
 export const mainApi = new MainApi({
-   // baseUrl: 'https://api.movie.andrei5s.nomoredomains.club',
-   // baseUrl: 'http://localhost:3000',
     baseUrl: process.env.REACT_APP_BASE_URL || 'http://localhost:3000',
     headers: {
-        
         'Content-Type': 'application/json'
     }
 });

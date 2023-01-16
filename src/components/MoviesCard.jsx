@@ -1,5 +1,6 @@
 import React from 'react';
 import flag from "../images/flag1.svg"
+import cross from "../images/icon-delete.svg"
 
 function MoviesCard(props) {
   const nameRu = props.card.nameRU
@@ -33,7 +34,7 @@ function MoviesCard(props) {
                 <h2 className="element__title">{nameRu}</h2>
                 <p className="element__duration">{duration()}</p>
             </div>
-        {props.isOnlySaved ? <button className="element__delete" onClick={handleCardDelete} type="button"><img src="/images/icon-delete.svg" className="element__delete-image" alt="крестик" /></button> :
+        {props.isOnlySaved ? <button className="element__delete" onClick={handleCardDelete} type="button"><img src={cross} className="element__delete-image" alt="крестик" /></button> :
         (props.isSaved(props.card) ? <button className="element__favourit-save" onClick={handleCardDelete} type="button"><img src={flag} className="element__favorit-image" alt="флажек" /></button> :
             <button className="element__favourit" onClick={handleCardSave} type="button"><img src={flag} className="element__favorit-image" alt="флажек" /></button>
             

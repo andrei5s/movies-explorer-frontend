@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
-import useFormValidation from '../hooks/useFormValidator'
 
 const initValues = {
   email: "",
@@ -11,11 +10,11 @@ const initValues = {
 
 const Login = (props) => {
   const [state, setState] = React.useState(initValues);
-  const { errors } = useFormValidation;
+  const [errors, setErrors] = React.useState()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
+    setErrors({...errors, [name] : e.target.validationMessage})
     setState((old) => ({
       ...old,
       [name]: value,
@@ -34,7 +33,7 @@ const Login = (props) => {
     <section className="register">
             <Logo />
             <h1 className="title">Рады видеть!</h1>
-            <form className="form" onSubmit={handleSubmit} action='#' noValidate>
+            <form className="form" onSubmit={handleSubmit}>
                 <label className="form__indicator">E-mail</label>
                 <input
                 type="email"
@@ -46,7 +45,9 @@ const Login = (props) => {
                 required
                 />
                 <div className="form__line"></div>
-                {errors?.name && <span className="error form__input-error">{errors.name}</span>}
+                {errors?.email && (
+            <span className="error form__input-error">{errors.email}</span>
+          )}
                 <label className="form__indicator">Пароль</label>
                 <input
                 type="password"
@@ -58,18 +59,18 @@ const Login = (props) => {
                 required
                 />
                 <div className="form__line"></div>
-                {errors?.name && <span className="error form__input-error">{errors.name}</span>}
-            </form>
+                {errors?.password && (
+            <span className="error form__input-error">{errors.password}</span>
+          )}
             <button
             className="button"
-            id="button-reg"
             type="submit"
             aria-label="вход"
-          ><Link to="/movies" className="form__link">
+          >
           Вход
-          </Link>
           </button>
             <p className="subtitle">Ещё не зарегистрированы?<Link to="/signup" className="link">Регистрация</Link></p>
+            </form>
         </section>
         </>
   );
