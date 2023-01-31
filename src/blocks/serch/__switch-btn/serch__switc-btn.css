@@ -3,9 +3,9 @@
     width: 36px;
     height: 20px;
     border-radius: 20px;
-    background: #bfbfbf;
+    background: #FF6838;
     z-index: 0;
-    margin: 6px 0 0 60px;
+    margin: 0 0 0 4px;
     padding: 0;
     border: none;
     cursor: pointer;
@@ -19,7 +19,7 @@
     height: 16px;
     width: 16px;
     border-radius: 8px;
-    background: #fff;
+    background: #2BE080;
     top: 2px;
     left: 2px;
     transition-duration: 300ms;
@@ -29,7 +29,7 @@
 }
 
 .serch__switch-btn:checked {
-    background: #2BE080;
+    background: #EBEBEB;
 }
 
 .serch__switch-btn:checked:after {

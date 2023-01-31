@@ -1,5 +1,5 @@
 .title {
-    font-family: 'Inter';
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -8,7 +8,7 @@
     margin: 40px 0 0 0;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 320px) {
     .title {
         margin: 50px auto 0 auto;
     }

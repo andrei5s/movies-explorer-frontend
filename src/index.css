@@ -103,7 +103,7 @@
 @import url(./blocks/error-page/__subtitle/error-page__subtitle.css);
 @import url(./blocks/error-page/__link/error-page__link.css);
 @import url(./blocks/preloader/preloader.css);
-@import url(./blocks/movieItem/movieItem.css);
+@import url(./blocks/movie-item/movie-item.css);
 @import url(./blocks/movies/movies.css);
 @import url(./blocks/saved-movies/saved-movies.css);
 @import url(./blocks/footer/footer.css);
@@ -114,3 +114,4 @@
 @import url(./blocks/footer/__info/footer__info.css);
 @import url(./blocks/footer/__info-yandex/footer__info-yandex.css);
 @import url(./blocks/footer/__info-git/footer__info-git.css);
+@import url(./blocks/preloader/preloader.css);

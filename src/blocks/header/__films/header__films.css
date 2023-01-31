@@ -1,6 +1,6 @@
 .header__films {
     margin: 10px 0;
-    font-family: 'Inter';
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 13px;
@@ -10,17 +10,11 @@
     text-decoration: none;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 768px) {
     .header__films {
-        margin: 28px 0 0 0;
+        margin: 24px 0 0 0;
         font-size: 18px;
         line-height: 22px;
         text-align: center;
-    }
-}
-
-@media screen and (max-width: 767px) {
-    .header__films {
-        margin-top: 24px;
     }
 }

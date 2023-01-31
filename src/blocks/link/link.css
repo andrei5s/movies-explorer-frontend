@@ -1,11 +1,11 @@
 .link {
-    font-family: 'Inter';
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     text-align: center;
-    color: #2BE080;
+    color: #FF6838;
     margin-left: 6px;
     text-decoration: none;
 }

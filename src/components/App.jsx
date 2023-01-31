@@ -47,11 +47,11 @@ function App() {
        .finally(() => setIsLoading(false));
   }, [loggedIn]);
 
-  const handleEditProfile = (name, email) => {
+  const handleEditProfile = ({ name, email }) => {
     mainApi
       .editProfile({ name, email })
-      .then(() => {
-        setCurrentUser({ name, email });
+      .then((currentUserData) => {
+        setCurrentUser(currentUserData);
       })
       .catch((err) => {
         setErrorMessage('Что-то пошло не так...')
@@ -234,6 +234,7 @@ function App() {
           isSaved={isSaved}
           onCardDelete={handleCardDelete}
           serverError={serverError}
+          handleSearch={handleSearch}
         />
     </ProtectedRoute>
         } />

@@ -1,6 +1,6 @@
 import React from 'react';
-import flag from "../images/flag1.svg"
-import cross from "../images/icon-delete.svg"
+import flag from "../images/heat.svg";
+import cross from "../images/icon-delete.svg";
 
 function MoviesCard(props) {
   const nameRu = props.card.nameRU
@@ -29,8 +29,13 @@ function MoviesCard(props) {
   return (
     <>
     <div className="element">
-        <div className="element__group">
-            <div className="element__spicific">
+    
+                <a className="element__movie" href={trailerLink} rel="noreferrer" target="_blank">
+                <img src={poster} alt="Постер" className="element__image" />
+                </a>
+                <div className="element__group">
+            <div className="element__spicific"> 
+                
                 <h2 className="element__title">{nameRu}</h2>
                 <p className="element__duration">{duration()}</p>
             </div>
@@ -40,9 +45,6 @@ function MoviesCard(props) {
             
             )}
                 </div>
-                <a className="element__movie" href={trailerLink} rel="noreferrer" target="_blank">
-                <img src={poster} alt="Постер" className="element__image" />
-                </a>
     </div>
     </>
   )

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import searchButton from "../images/search-button1.svg"
+import searchButton from "../images/icon.svg"
 
 function SearchForm(props) {
   const [movieName, setMovieName] = useState('')
@@ -30,11 +30,13 @@ function SearchForm(props) {
       <form className="serch__form">
         <div className="serch__input-form">
           <input className="serch__input" onChange={handleChangeMovieName} value={movieName} type="text" name="movie" placeholder="Фильм" required />
-          <button className="serch__button" onSubmit={handleSubmit} type="submit"><img src={searchButton} alt="стрелка" className="serch__leble" /></button>
+          <button className="serch__button" onSubmit={handleSubmit} type="submit"><img src={searchButton} alt="поиск" className="serch__leble" /></button>
+      
         </div>
         <div className="serch__short">
+        <label className="serch__subtitle">Короткометражки</label>
           <input className="serch__switch-btn" checked={checkbox} onChange={handleChangeCheckbox} type="checkbox" name="shortFilms" />
-          <label className="serch__subtitle">Короткометражки</label>
+          
         </div>
       </form>
       <div className="serch__line"></div>

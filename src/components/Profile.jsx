@@ -1,33 +1,38 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { CurrentUserContext } from "../context/currentUserContext";
 import Navigation from "./Navigation";
 
   function Profile(props) {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
     const currentUser = useContext(CurrentUserContext);
-  
     const [errors, setErrors] = useState()
-    const [state, setState] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setErrors({...errors, [name] : e.target.validationMessage})
-    setState((old) => ({
-      ...old,
-      [name]: value,
-      
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const { name, email } = state;
-    props.onEditProfile(name, email);
-  };
+  
+    useEffect(
+      () => {
+          setName(String(currentUser.name));
+          setEmail(String(currentUser.email));
+      },
+      [currentUser]
+    );
+  
+    function handleChangeName(evt) {
+      const { name } = evt.target;
+      setName(evt.target.value);
+      setErrors({...errors, [name] : evt.target.validationMessage});
+    }
+  
+    function handleChangeEmail(evt) {
+      const { name } = evt.target;
+      setEmail(evt.target.value);
+      setErrors({...errors, [name] : evt.target.validationMessage})
+    }
+  
+    function handleSubmit(e) {
+      e.preventDefault();
+  
+      props.onEditProfile({ name, email });
+    }
 
   return (
     <>
@@ -38,8 +43,8 @@ import Navigation from "./Navigation";
           <label className="form__indicator">Имя</label>
           <input
             className="form__input"
-            value={state.name || currentUser.name}
-            onChange={handleChange}
+            value={name}
+            onChange={handleChangeName}
             type="name"
             name="name"
             placeholder={currentUser.name}
@@ -54,8 +59,8 @@ import Navigation from "./Navigation";
           <label className="form__indicator">E-mail</label>
           <input
             className="form__input"
-            value={state.email || currentUser.email}
-            onChange={handleChange}
+            value={email}
+            onChange={handleChangeEmail}
             type="email"
             name="email"
             placeholder={currentUser.email}

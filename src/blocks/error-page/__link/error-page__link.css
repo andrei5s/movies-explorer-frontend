@@ -1,13 +1,13 @@
 .error-page__link {
     margin: 184px 0 0 0;
-    font-family: 'Inter';
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     text-align: center;
     text-decoration: none;
-    color: #2BE080;
+    color: #FF6838;
 }
 
 @media screen and (max-width: 767px) {

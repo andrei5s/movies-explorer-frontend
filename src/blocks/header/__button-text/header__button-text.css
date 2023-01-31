@@ -1,6 +1,6 @@
     .header__button-text {
         text-decoration: none;
-        font-family: 'Inter';
+        font-family: 'Inter', Arial, Helvetica, sans-serif;
         font-style: normal;
         font-weight: 500;
         font-size: 12px;

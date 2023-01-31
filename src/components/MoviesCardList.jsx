@@ -10,10 +10,11 @@ function MoviesCardList(props) {
       {
        props.cards.map(card => {
         return (
-          <li className="movieItem">
+          <li className="movie-item">
           <MoviesCard
             card={card}
-            key={props.isOnlySaved ? card.movieId : card.id}
+            key={props.isOnlySaved ? card.movieId : card._id}
+           // key={card._id}
             isSaved={props.isSaved}
             isOnlySaved={props.isOnlySaved}
             onCardSave={props.onCardSave}
