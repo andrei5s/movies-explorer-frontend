@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import SearchForm from '../components/SearchForm';
 import MoviesCardList from '../components/MoviesCardList';
-import Navigation from './Navigation';
-import Footer from './Footer';
 
 function SavedMovies(props) {
   const [filteredMovies, setFilteredMovies] = useState([])
@@ -33,9 +31,8 @@ function SavedMovies(props) {
 
   return (
     <>
-    <Navigation />
       <SearchForm
-        onSearch={handleSerch}
+        handleSearch={handleSerch}
         defaultValue=""
       />
       <main className="saved-movies">
@@ -48,7 +45,6 @@ function SavedMovies(props) {
           loading={props.loading}
         />
       </main>
-      <Footer />
     </>
   )
 }

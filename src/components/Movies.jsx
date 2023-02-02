@@ -1,12 +1,9 @@
 import SearchForm from '../components/SearchForm';
 import MoviesCardList from '../components/MoviesCardList';
-import Navigation from './Navigation';
-import Footer from './Footer';
 
 function Movies(props) {
   return (
     <>
-    <Navigation />
       <SearchForm
         handleSearch={props.handleSearch}
         defaultValue={props.defaultSearchValue}
@@ -24,7 +21,6 @@ function Movies(props) {
         />
         <button className="elements__button" onClick={props.handleShowMore} type="button">Ещё</button>
       </main>
-      <Footer />
     </>
   )
 }

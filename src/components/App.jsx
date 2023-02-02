@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import Main from './Main';
 import Movies from './Movies';
 import SavedMovies from './SavedMovies';
@@ -12,6 +12,8 @@ import { mainApi } from "../utils/MainApi";
 import moviesApi from "../utils/moviesApi";
 import { CurrentUserContext } from "../context/currentUserContext";
 import ProtectedRoute from "./ProtectedRoute";
+import Header from "./Header";
+import Footer from "./Footer";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -24,6 +26,8 @@ function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [moreCards, setMoreCards] = useState(0);
   const [savedMovies, setSavedMovies] = useState([]);
+  const { pathname } = useLocation();
+
 
   useEffect(() => {
     if (loggedIn)
@@ -176,11 +180,10 @@ function App() {
   function isSaved(card) { 
     //console.log(card)
     return savedMovies.some(item => item.movieId === card.id && item.owner === currentUser._id)
-    
   }
 
-  function handleCardSave(movie) {
-    mainApi.addMovie(movie)
+  function handleCardSave(movieData) {
+    mainApi.addMovie(movieData)
       .then((movieData) => {
         setSavedMovies([...savedMovies, movieData.data])
         console.log(movieData.data)
@@ -190,24 +193,26 @@ function App() {
       })
   }
 
-  function handleCardDelete(card) {
-    console.log(card)
-    const deleteCard = savedMovies.find(c => c.movieId === (card.id || card.movieId) && c.owner === currentUser._id)
-    if (!deleteCard) return;
-    mainApi.deleteMovie(deleteCard._id)
+  function handleCardDelete(movieId) {
+    console.log(movieId)
+    mainApi
+      .deleteMovie(movieId)
       .then(() => {
-        setSavedMovies(savedMovies.filter(c => c._id !== deleteCard._id))
+        setSavedMovies((savedMovies) => savedMovies.filter((c) => c._id !== movieId));
       })
       .catch((err) => {
-        console.log(err.message)
-      })
+        console.log(err.message);
+      });
   }
 
   return ( 
     <CurrentUserContext.Provider value={currentUser}>
     <div className="body">
       <div className="page">
+      {pathname === '/' || pathname === '/profile' || pathname === '/movies' || pathname === '/saved-movies'  ?
+          <Header loggedIn={loggedIn} /> : ''}
         <Routes>
+        
           <Route path="/" element={<Main loggedIn={loggedIn} />} />
           <Route path="/movies" element={
           <ProtectedRoute loggedIn={loggedIn}>
@@ -259,7 +264,7 @@ function App() {
           <Route path="*"
              element={<ErrorPage />} />     
         </Routes> 
-        
+        {pathname === '/' || pathname === '/movies' || pathname === '/saved-movies' ? <Footer /> : ''}
      </div>
      </div>
      </CurrentUserContext.Provider>

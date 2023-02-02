@@ -8,11 +8,13 @@
     cursor: pointer;
     background-color: #ffff;
     position: absolute;
-    right: 7px;
+    right: 10px;
     top: 7px;
     bottom: 7px;
+    border-style: none;
+    box-shadow: inset;
 }
 
 .serch__button:hover {
-    opacity: .8;
+    opacity: 0.8;
 }

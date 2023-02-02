@@ -1,6 +1,5 @@
 import { useContext, useState, useEffect } from "react";
 import { CurrentUserContext } from "../context/currentUserContext";
-import Navigation from "./Navigation";
 
   function Profile(props) {
     const [name, setName] = useState("");
@@ -36,7 +35,6 @@ import Navigation from "./Navigation";
 
   return (
     <>
-      <Navigation />
       <section className="profile">
         <h2 className="profile__title">Привет, {currentUser.name}!</h2>
         <form className="profile__form" id="edit" onSubmit={handleSubmit}>

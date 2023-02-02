@@ -73,6 +73,7 @@
 @import url(./blocks/element/__favorit-save/element__favorit-save.css);
 @import url(./blocks/element/__favorit-image/element__favorit-image.css);
 @import url(./blocks/element/__delete/element__delete.css);
+@import url(./blocks/element/__delete/_hidden/element__delete_hidden.css);
 @import url(./blocks/element/__favorit-image/element__favorit-image.css);
 @import url(./blocks/element/__movie/element__movie.css);
 @import url(./blocks/element/__image/element__image.css);

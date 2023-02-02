@@ -1,11 +1,18 @@
 import React from 'react';
 import flag from "../images/heat.svg";
 import cross from "../images/icon-delete.svg";
+import { CurrentUserContext } from "../context/currentUserContext";
 
 function MoviesCard(props) {
   const nameRu = props.card.nameRU
   const poster = props.isOnlySaved ? props.card.image : `https://api.nomoreparties.co/${props.card.image.url}`
   const trailerLink = props.card.trailerLink
+  const currentUser = React.useContext(CurrentUserContext);
+  const isOwn = props.card.owner === currentUser._id;
+
+  const deleteButtonClassName = `element__delete ${
+    isOwn ? "element__delete_visible" : "element__delete_hidden"
+  }`;
 
   const duration = () => {
     if (props.card.duration > 60) {
@@ -39,7 +46,7 @@ function MoviesCard(props) {
                 <h2 className="element__title">{nameRu}</h2>
                 <p className="element__duration">{duration()}</p>
             </div>
-        {props.isOnlySaved ? <button className="element__delete" onClick={handleCardDelete} type="button"><img src={cross} className="element__delete-image" alt="крестик" /></button> :
+        {props.isOnlySaved ? <button className={deleteButtonClassName} onClick={handleCardDelete} type="button"><img src={cross} className="element__delete-image" alt="крестик" /></button> :
         (props.isSaved(props.card) ? <button className="element__favourit-save" onClick={handleCardDelete} type="button"><img src={flag} className="element__favorit-image" alt="флажек" /></button> :
             <button className="element__favourit" onClick={handleCardSave} type="button"><img src={flag} className="element__favorit-image" alt="флажек" /></button>
             
