@@ -10,6 +10,7 @@
 @import url(./blocks/header/__films/header__films.css);
 @import url(./blocks/header/__saved/header__saved.css);
 @import url(./blocks/header/__accaunt/header__accaunt.css);
+@import url(./blocks/header/__button-accaunt/header__button-accaunt.css);
 @import url(./blocks/header/__menu/header__menu.css);
 @import url(./blocks/header/__menu-icon/header__menu-icon.css);
 @import url(./blocks/header/__index/header__index.css);

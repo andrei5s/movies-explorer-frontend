@@ -1,0 +1,12 @@
+.header__button-accaunt {
+    margin: 10px 0 0 auto;
+    background: #F9F9F9;
+    border-radius: 20px;
+    border: none;
+}
+
+@media screen and (max-width: 768px) {
+    .header__button-accaunt {
+        margin: auto auto 54px auto;
+    }
+}

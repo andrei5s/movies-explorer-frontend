@@ -21,7 +21,7 @@ const Navigation = (props) => {
                 <Link to="/movies" className="header__films">Фильмы</Link>
                 <div className="header__line"></div>
                 <Link to="/saved-movies" className="header__saved">Сохранённые фильмы</Link>
-                <Link to="/profile" className="header__accaunt">Аккаунт</Link>
+                <button type="button" className="header__button-accaunt"><Link to="/profile" className="header__accaunt">Аккаунт</Link></button>
                 </nav>
             </div>
             <div onClick={hendleMenuOpen} className="header__menu">

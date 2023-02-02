@@ -1,5 +1,4 @@
 .header__accaunt {
-    margin: 10px 0 0 auto;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 500;
@@ -11,10 +10,4 @@
     color: #000000;
     text-decoration: none;
     background: #F9F9F9;
-}
-
-@media screen and (max-width: 768px) {
-    .header__accaunt {
-        margin: auto auto 54px auto;
-    }
 }
