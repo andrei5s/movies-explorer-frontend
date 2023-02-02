@@ -1,0 +1,25 @@
+.project__button-about {
+    width: 96px;
+    height: 36px;
+    background: #E8E8E8;
+    border-radius: 10px;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 767px) {
+    .project__button-about {
+        width: 82px;
+        height: 26px;
+        font-size: 10px;
+        line-height: 16px;
+    }
+}

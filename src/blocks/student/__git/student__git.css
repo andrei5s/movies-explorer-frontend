@@ -1,0 +1,22 @@
+.student__git {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    margin: 99px auto 0 6%;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 1023px) {
+    .student__git {
+        margin-top: 87px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .student__git {
+        margin-top: 40px;
+    }
+}

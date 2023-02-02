@@ -1,0 +1,13 @@
+.serch__form {
+    margin: 70px auto 80px auto;
+    width: 89%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 767px) {
+    .serch__form {
+        flex-direction: column;
+    }
+}

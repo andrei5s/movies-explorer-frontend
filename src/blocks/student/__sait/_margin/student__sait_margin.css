@@ -1,0 +1,15 @@
+.student__sait_margin {
+    margin-bottom: 125px;
+}
+
+@media screen and (max-width: 1023px) {
+    .student__sait_margin {
+        margin-bottom: 90px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .student__sait_margin {
+        margin-bottom: 70px;
+    }
+}

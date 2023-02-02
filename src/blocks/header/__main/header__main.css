@@ -1,0 +1,23 @@
+    .header__main {
+        width: 60%;
+        margin-left: 41%;
+        display: flex;
+        flex-direction: row;
+    }
+    
+    @media screen and (max-width: 768px) {
+        .header__main {
+            flex-direction: column;
+            align-items: center;
+            background: #FFFFFF;
+            width: 68%;
+            margin: 0;
+            list-style-type: none;
+        }
+    }
+    
+    @media screen and (max-width: 320px) {
+        .header__main {
+            width: 100%;
+        }
+    }

@@ -1,0 +1,13 @@
+.element__delete {
+    width: 30px;
+    height: 30px;
+    background-image: url(../../../images/delete.svg);
+    background-color: #f9f9f9;
+    background-repeat: no-repeat;
+    border-radius: 36px;
+    margin: 5px 14px 19px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}

@@ -1,0 +1,13 @@
+.header__line {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .header__line {
+        display: block;
+        margin: 7px 0 0 0;
+        width: 72px;
+        border-bottom: 1px solid;
+        border-color: #000000;
+    }
+}

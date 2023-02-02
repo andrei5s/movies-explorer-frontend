@@ -1,0 +1,19 @@
+.error-page__link {
+    margin: 184px 0 0 0;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    text-decoration: none;
+    color: #FF6838;
+}
+
+@media screen and (max-width: 767px) {
+    .error-page__link {
+        margin-top: 284px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+}

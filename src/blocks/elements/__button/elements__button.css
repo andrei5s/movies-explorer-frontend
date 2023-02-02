@@ -1,0 +1,25 @@
+.elements__button {
+    width: 320px;
+    height: 36px;
+    margin: 80px auto 80px auto;
+    background-color: #ffffff;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    color: #000000;
+    border: 1px solid;
+    border-color: #e8e8e8;
+    border-radius: 6px;
+}
+
+@media screen and (max-width: 350px) {
+    .elements__button {
+        width: 240px;
+    }
+}

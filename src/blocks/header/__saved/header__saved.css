@@ -1,0 +1,21 @@
+.header__saved {
+    margin: 10px 0 0 16px;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    text-align: right;
+    color: #000000;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+    .header__saved {
+        margin: 15px 0 0 0;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+        text-align: center;
+    }
+}

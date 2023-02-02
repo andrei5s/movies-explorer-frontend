@@ -1,0 +1,17 @@
+.about__column_title {
+    margin: 0;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.04em;
+    color: #000000;
+}
+
+@media screen and (max-width: 767px) {
+    .about__column_title {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}

@@ -1,0 +1,20 @@
+.profile__form {
+    display: flex;
+    flex-direction: column;
+    margin: 106px auto 0 auto;
+    width: 32%;
+}
+
+@media screen and (max-width: 1023px) {
+    .profile__form {
+        width: 53%;
+        margin-top: 79px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .profile__form {
+        width: 81%;
+        margin-top: 63px;
+    }
+}
