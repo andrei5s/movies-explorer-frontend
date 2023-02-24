@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
 
@@ -9,12 +9,14 @@ const initValues = {
 };
 
 const Login = (props) => {
-  const [state, setState] = React.useState(initValues);
-  const [errors, setErrors] = React.useState()
+  const [state, setState] = useState(initValues);
+  const [errors, setErrors] = useState();
+  const [isValid , setIsValid] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setErrors({...errors, [name] : e.target.validationMessage})
+    setIsValid(e.target.closest('form').checkValidity());
+    setErrors({...errors, [name] : e.target.validationMessage});
     setState((old) => ({
       ...old,
       [name]: value,
@@ -62,8 +64,10 @@ const Login = (props) => {
                 {errors?.password && (
             <span className="error form__input-error">{errors.password}</span>
           )}
+          <span className="register__error">{props.errorMessage}</span>
             <button
-            className="button"
+            className={isValid ? "button" : "button_disabled"}
+            disabled={!isValid}
             type="submit"
             aria-label="вход"
           >

@@ -1,28 +1,41 @@
 import SearchForm from '../components/SearchForm';
 import MoviesCardList from '../components/MoviesCardList';
 
-function Movies(props) {
+function Movies({
+  cards,
+  handleSearch,
+  defaultValue,
+  handleShowMore,
+  isSaved,
+  onCardSave,
+  onCardDelete,
+  serverError,
+  loading,
+}) {
   return (
     <>
-      <SearchForm
-        handleSearch={props.handleSearch}
-        defaultValue={props.defaultSearchValue}
-      />
+      <SearchForm handleSearch={handleSearch} defaultValue={defaultValue} />
       <main className="movies">
         <MoviesCardList
-          cards={props.cards}
-          handleShowMore={props.handleShowMore}
-          isSaved={props.isSaved}
+          cards={cards}
+          handleShowMore={handleShowMore}
+          isSaved={isSaved}
           isOnlySaved={false}
-          onCardSave={props.onCardSave}
-          onCardDelete={props.onCardDelete}
-          serverError={props.serverError}
-          loading={props.loading}
+          onCardSave={onCardSave}
+          onCardDelete={onCardDelete}
+          serverError={serverError}
+          loading={loading}
         />
-        <button className="elements__button" onClick={props.handleShowMore} type="button">Ещё</button>
+        <button
+          className="elements__button"
+          onClick={handleShowMore}
+          type="button"
+        >
+          Ещё
+        </button>
       </main>
     </>
-  )
+  );
 }
 
 export default Movies

@@ -1,0 +1,11 @@
+.movies__search-error {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 100px auto 200px auto;
+    color: #FF6838;
+}

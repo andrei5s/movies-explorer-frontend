@@ -1,5 +1,5 @@
 
-export const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3000'
+export const BASE_URL = "https://api.movie.andrei5s.nomoredomains.club"
 
 const reqest = ({
     url,

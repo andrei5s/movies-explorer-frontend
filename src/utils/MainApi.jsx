@@ -67,8 +67,8 @@ class MainApi {
             .then(this._getResponseData)
     }
 
-    deleteMovie(movieId) {
-        return fetch(`${this._baseUrl}/movies/${movieId}`, {
+    deleteMovie(id) {
+        return fetch(`${this._baseUrl}/movies/${id}`, {
                 method: "DELETE",
               headers: {
                 authorization: `Bearer ${localStorage.getItem('token')}`, ...this._headers,
@@ -89,7 +89,7 @@ class MainApi {
 }
 
 export const mainApi = new MainApi({
-    baseUrl: process.env.REACT_APP_BASE_URL || 'http://localhost:3000',
+    baseUrl: "https://api.movie.andrei5s.nomoredomains.club",
     headers: {
         'Content-Type': 'application/json'
     }

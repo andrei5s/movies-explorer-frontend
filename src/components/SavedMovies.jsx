@@ -1,52 +1,52 @@
-import { useState, useEffect } from 'react';
-import SearchForm from '../components/SearchForm';
-import MoviesCardList from '../components/MoviesCardList';
+import { useState, useEffect } from "react";
+import SearchForm from "../components/SearchForm";
+import MoviesCardList from "../components/MoviesCardList";
 
-function SavedMovies(props) {
-  const [filteredMovies, setFilteredMovies] = useState([])
+const SavedMovies = ({ cards, isSaved, onCardDelete, serverError, loading }) => {
+  const [savedMovie, setSavedMovie] = useState([]);
 
-  function handleSerch(movieName, isShortFilms) {
-    const filteredMovies = props.cards.filter((item) => item.nameRU.toLowerCase().includes(movieName.toLowerCase()))
+  const handleSerch = (movieName, isShortFilms) => {
+    const savedMovie = cards.filter((item) =>
+      item.nameRU.toLowerCase().includes(movieName.toLowerCase())
+    );
     if (isShortFilms) {
-      setFilteredMovies(filteredMovies.filter((item) => item.duration <= 40))
-    }
-    else {
-      setFilteredMovies(filteredMovies)
+      setSavedMovie(savedMovie.filter((item) => item.duration <= 40));
+    } else {
+      setSavedMovie(savedMovie);
     }
   }
 
-  function initFilteredMovies() {
-    setFilteredMovies(props.cards)
+  const initFilteredMovies = () => {
+    setSavedMovie(cards);
   }
 
   useEffect(() => {
-    setFilteredMovies(
-      filteredMovies.filter(movie => props.cards.some(card => movie.movieId === card.movieId))
-    )
-  }, [props.cards])
+    setSavedMovie(
+      savedMovie.filter((movie) =>
+        cards.some((card) => movie.id === card.id)
+      )
+    );
+  }, [cards]);
 
   useEffect(() => {
-    initFilteredMovies()
-  }, [])
+    initFilteredMovies();
+  }, [cards.lenght]);
 
   return (
     <>
-      <SearchForm
-        handleSearch={handleSerch}
-        defaultValue=""
-      />
+      <SearchForm handleSearch={handleSerch} defaultValue="" />
       <main className="saved-movies">
         <MoviesCardList
-          cards={filteredMovies}
-          isSaved={props.isSaved}
+          cards={savedMovie}
+          isSaved={isSaved}
           isOnlySaved={true}
-          onCardDelete={props.onCardDelete}
-          serverError={props.serverError}
-          loading={props.loading}
+          onCardDelete={onCardDelete}
+          serverError={serverError}
+          loading={loading}
         />
       </main>
     </>
-  )
+  );
 }
 
-export default SavedMovies
+export default SavedMovies;

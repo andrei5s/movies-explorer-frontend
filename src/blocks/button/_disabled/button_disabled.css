@@ -1,0 +1,24 @@
+.button_disabled {
+    background: #F9F9F9;
+    color: #A0A0A0;
+    width: 396px;
+    height: 45px;
+    border-radius: 3px;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    margin: 134px 0 0 0;
+    border-style: none;
+}
+
+@media screen and (max-width: 767px) {
+    .button_disabled {
+        margin-top: 222px;
+        width: 260px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+}

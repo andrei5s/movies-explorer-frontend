@@ -5,7 +5,8 @@ import { CurrentUserContext } from "../context/currentUserContext";
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const currentUser = useContext(CurrentUserContext);
-    const [errors, setErrors] = useState()
+    const [errors, setErrors] = useState();
+    const [isValid , setIsValid] = useState(false);
   
     useEffect(
       () => {
@@ -19,12 +20,14 @@ import { CurrentUserContext } from "../context/currentUserContext";
       const { name } = evt.target;
       setName(evt.target.value);
       setErrors({...errors, [name] : evt.target.validationMessage});
+      setIsValid(evt.target.closest('form').checkValidity());
     }
   
     function handleChangeEmail(evt) {
       const { name } = evt.target;
       setEmail(evt.target.value);
-      setErrors({...errors, [name] : evt.target.validationMessage})
+      setErrors({...errors, [name] : evt.target.validationMessage});
+      setIsValid(evt.target.closest('form').checkValidity());
     }
   
     function handleSubmit(e) {
@@ -69,7 +72,8 @@ import { CurrentUserContext } from "../context/currentUserContext";
             <span className="profile__input-error">{errors.email}</span>
           )}
             <button
-              className="profile__edit"
+              className={isValid ?"profile__edit" : "profile__edit_disabled"}
+              disabled={!isValid}
               type="submit"
             >
               Редактировать
