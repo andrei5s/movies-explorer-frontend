@@ -206,16 +206,7 @@ function App() {
     mainApi
       .deleteMovie(movieCard._id)
       .then(() => {
-        //console.log(savedMovies.filter((c) => c._id !== movieCard._id))
-        setSavedMovies(savedMovies.filter((c) => c._id !== movieCard._id));
-       /*mainApi
-        .getMovies()
-        .then((savedMovies) => {
-          setSavedMovies(savedMovies);
-        })
-        .catch((err) => {
-          console.log(err);
-        });*/
+        setSavedMovies([...savedMovies.filter((c) => c._id !== movieCard._id)]);
       })
       .catch((err) => {
         console.log(err.message);

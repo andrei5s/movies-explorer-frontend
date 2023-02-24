@@ -77,15 +77,6 @@ class MainApi {
             .then(this._getResponseData)
     }
 
-    deleteCard(cardId) {
-        return fetch(`${this._baseUrl}/cards/${cardId}`, {
-                method: "DELETE",
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem('token')}`, ...this._headers,
-                },
-            })
-            .then(this._getResponseData)
-    }
 }
 
 export const mainApi = new MainApi({

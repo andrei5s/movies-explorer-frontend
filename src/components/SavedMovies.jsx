@@ -3,41 +3,41 @@ import SearchForm from "../components/SearchForm";
 import MoviesCardList from "../components/MoviesCardList";
 
 const SavedMovies = ({ cards, isSaved, onCardDelete, serverError, loading }) => {
-  const [savedMovie, setSavedMovie] = useState([]);
+  const [savedMovies, setSavedMovies] = useState([]);
 
   const handleSerch = (movieName, isShortFilms) => {
     const savedMovie = cards.filter((item) =>
       item.nameRU.toLowerCase().includes(movieName.toLowerCase())
     );
     if (isShortFilms) {
-      setSavedMovie(savedMovie.filter((item) => item.duration <= 40));
+      setSavedMovies(savedMovie.filter((item) => item.duration <= 40));
     } else {
-      setSavedMovie(savedMovie);
+      setSavedMovies(savedMovie);
     }
   }
 
   const initFilteredMovies = () => {
-    setSavedMovie(cards);
+    setSavedMovies(cards);
   }
 
   useEffect(() => {
-    setSavedMovie(
-      savedMovie.filter((movie) =>
+    setSavedMovies(
+      savedMovies.filter((movie) =>
         cards.some((card) => movie.id === card.id)
       )
     );
-  }, [cards]);
+  }, [cards.length]);
 
   useEffect(() => {
     initFilteredMovies();
-  }, [cards.lenght]);
+  }, [cards.length]);
 
   return (
     <>
       <SearchForm handleSearch={handleSerch} defaultValue="" />
       <main className="saved-movies">
         <MoviesCardList
-          cards={savedMovie}
+          cards={savedMovies}
           isSaved={isSaved}
           isOnlySaved={true}
           onCardDelete={onCardDelete}
