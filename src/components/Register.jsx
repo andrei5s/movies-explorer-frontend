@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Logo from "./Logo";
 
 const Register = (props) => {
- const [errors, setErrors] = useState();
+ const [errors, setErrors] = useState({});
  const [isValid , setIsValid] = useState(false);
   const [state, setState] = useState({
     name: "",
@@ -44,6 +44,7 @@ const Register = (props) => {
             className="form__input"
             onChange={handleChange}
             value={state.name}
+            pattern='[A-Za-zА-Яа-яЁё\s-]+'
             minLength="2"
             maxLength="30"
             required
@@ -60,6 +61,7 @@ const Register = (props) => {
             className="form__input"
             onChange={handleChange}
             value={state.email}
+            pattern='^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
             required
           />
           <div className="form__line"></div>

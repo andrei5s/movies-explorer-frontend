@@ -26,13 +26,7 @@ function Movies({
           serverError={serverError}
           loading={loading}
         />
-        <button
-          className="elements__button"
-          onClick={handleShowMore}
-          type="button"
-        >
-          Ещё
-        </button>
+
       </main>
     </>
   );

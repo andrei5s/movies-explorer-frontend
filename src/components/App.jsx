@@ -29,6 +29,7 @@ function App() {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    setIsLoading(true);
     if (loggedIn)
       mainApi
         .getMovies()
@@ -41,8 +42,7 @@ function App() {
     mainApi
       .getProfile()
       .then((currentUserData) => {
-        setIsLoading(true);
-        setCurrentUser(currentUserData);
+       setCurrentUser(currentUserData);
       })
       .catch((err) => {
         console.log(err);
@@ -68,7 +68,7 @@ function App() {
         auth
           .checkToken(token)
           .then((res) => {
-            if (res?.data?.email) {
+            if (res) {
               setLoggedIn(true);
             }
           })
@@ -76,7 +76,7 @@ function App() {
       }
     };
     tokenCheck();
-  }, [navigate]);
+  }, []);
 
   const handleLogin = (email, password) => {
     return auth
@@ -104,21 +104,16 @@ function App() {
       .register(name, email, password)
       .then((data) => {
         if (data) {
-          navigate("/signin");
+         handleLogin(email, password)
         }
       })
       .catch((err) => {
-        setErrorMessage("Что-то пошло не так...");
+        err.status !== 400
+        ? setErrorMessage('Пользователь с таким email уже зарегистрирован')
+        : setErrorMessage("Что-то пошло не так..."); 
         console.log(err);
       });
   };
-
-  const handleSignOut = () => {
-    localStorage.removeItem("token");
-    setCurrentUser({});
-    setLoggedIn(false);
-    navigate("/");
-  }
 
   function checkWidth() {
     setWidth(window.innerWidth);
@@ -211,6 +206,18 @@ function App() {
       .catch((err) => {
         console.log(err.message);
       });
+  }
+
+  const handleSignOut = () => {
+    localStorage.removeItem("token");
+    setCurrentUser({});
+    setLoggedIn(false);
+    navigate("/");
+    setIsLoading(false);
+    setServerError(false);
+    setErrorMessage("");
+    setMovies([]);
+    setSavedMovies([]);
   }
 
   return (

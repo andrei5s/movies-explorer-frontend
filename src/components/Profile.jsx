@@ -5,8 +5,9 @@ import { CurrentUserContext } from "../context/currentUserContext";
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const currentUser = useContext(CurrentUserContext);
-    const [errors, setErrors] = useState();
+    const [errors, setErrors] = useState({});
     const [isValid , setIsValid] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
   
     useEffect(
       () => {
@@ -32,8 +33,11 @@ import { CurrentUserContext } from "../context/currentUserContext";
   
     function handleSubmit(e) {
       e.preventDefault();
-  
       props.onEditProfile({ name, email });
+    }
+
+    function handleSave() {
+      setIsSuccess(true)
     }
 
   return (
@@ -49,6 +53,7 @@ import { CurrentUserContext } from "../context/currentUserContext";
             type="name"
             name="name"
             placeholder={currentUser.name}
+            pattern='[A-Za-zА-Яа-яЁё\s-]+'
             minLength="2"
             maxLength="30"
             required
@@ -65,16 +70,20 @@ import { CurrentUserContext } from "../context/currentUserContext";
             type="email"
             name="email"
             placeholder={currentUser.email}
+            pattern='^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
             required
           />
           <div className="form__line"></div>
           {errors?.email && (
             <span className="profile__input-error">{errors.email}</span>
           )}
+          {isSuccess ? <p className="profile__edit-status">Изменения сохранены</p> :
+          <span className="profile__edit-error">{errors?.email}</span>}
             <button
               className={isValid ?"profile__edit" : "profile__edit_disabled"}
               disabled={!isValid}
               type="submit"
+              onClick={handleSave}
             >
               Редактировать
             </button>

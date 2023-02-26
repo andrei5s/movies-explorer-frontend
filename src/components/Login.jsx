@@ -10,9 +10,9 @@ const initValues = {
 
 const Login = (props) => {
   const [state, setState] = useState(initValues);
-  const [errors, setErrors] = useState();
+  const [errors, setErrors] = useState({});
   const [isValid , setIsValid] = useState(false);
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setIsValid(e.target.closest('form').checkValidity());
@@ -26,7 +26,6 @@ const Login = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { email, password } = state;
-
     props.onLogin(email, password);
   };
 
@@ -44,6 +43,7 @@ const Login = (props) => {
                 className="form__input"
                 onChange={handleChange}
                 value={state.email}
+                pattern='^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
                 required
                 />
                 <div className="form__line"></div>

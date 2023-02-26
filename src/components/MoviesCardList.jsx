@@ -8,7 +8,8 @@ function MoviesCardList({
   isOnlySaved,
   onCardSave,
   onCardDelete,
-  serverError
+  serverError,
+  handleShowMore
 }) {
   if (loading) return <Preloader />;
   if (cards.length === 0)
@@ -20,6 +21,8 @@ function MoviesCardList({
         сервер недоступен. Подождите немного и попробуйте ещё раз
       </span>
     );
+
+    const foundMovies = JSON.parse(localStorage.getItem('foundMovies'))
 
   return (
     <>
@@ -39,6 +42,9 @@ function MoviesCardList({
           );
         })}
       </section>
+      {isOnlySaved ? '' :
+        (cards.length < foundMovies.length ?
+          <button className="elements__button" onClick={handleShowMore} type="button">Ещё</button> : '')}
     </>
   );
 }
