@@ -1,5 +1,5 @@
-import MoviesCard from '../components/MoviesCard'
-import Preloader from '../components/Preloader'
+import MoviesCard from "../components/MoviesCard";
+import Preloader from "../components/Preloader";
 
 function MoviesCardList({
   loading,
@@ -9,11 +9,10 @@ function MoviesCardList({
   onCardSave,
   onCardDelete,
   serverError,
-  handleShowMore
+  handleShowMore,
 }) {
   if (loading) return <Preloader />;
-  if (cards.length === 0)
-    return <span className="movies__search-error">Ничего не найдено</span>;
+
   if (serverError)
     return (
       <span className="movies__search-error">
@@ -22,7 +21,17 @@ function MoviesCardList({
       </span>
     );
 
-    const foundMovies = JSON.parse(localStorage.getItem('foundMovies'))
+  const foundMovies = JSON.parse(localStorage.getItem("foundMovies"));
+
+  if (foundMovies === null)
+    return (
+      <span className="movies__search-error">
+        Вы ещё ни чего не искали. Начните поиск
+      </span>
+    );
+
+  if (foundMovies.length === 0)
+    return <span className="movies__search-error">Ничего не найдено</span>;
 
   return (
     <>
@@ -42,11 +51,22 @@ function MoviesCardList({
           );
         })}
       </section>
-      {isOnlySaved ? '' :
-        (cards.length < foundMovies.length ?
-          <button className="elements__button" onClick={handleShowMore} type="button">Ещё</button> : '')}
+
+      {isOnlySaved ? (
+        ""
+      ) : cards.length < foundMovies.length ? (
+        <button
+          className="elements__button"
+          onClick={handleShowMore}
+          type="button"
+        >
+          Ещё
+        </button>
+      ) : (
+        ""
+      )}
     </>
   );
 }
 
-export default MoviesCardList
+export default MoviesCardList;

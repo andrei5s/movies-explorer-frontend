@@ -21,12 +21,15 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const navigate = useNavigate();
   const [serverError, setServerError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
   const [movies, setMovies] = useState([]);
   const [width, setWidth] = useState(window.innerWidth);
   const [moreCards, setMoreCards] = useState(0);
   const [savedMovies, setSavedMovies] = useState([]);
   const { pathname } = useLocation();
+  const [errorEmailProfile, setErrorEmailProfile] = useState(true);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSuccessText, setIsSuccessText] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -55,9 +58,15 @@ function App() {
       .editProfile({ name, email })
       .then((currentUserData) => {
         setCurrentUser(currentUserData);
+        setErrorEmailProfile(true);
+        setIsSuccess(false);
+        setIsSuccessText('Изменения сохранены')
       })
       .catch((err) => {
         console.log(err);
+        setErrorEmailProfile(false);
+        setIsSuccess(true);
+        setErrorMessage('Пользователь с таким email уже зарегистрирован')
       });
   };
 
@@ -70,6 +79,7 @@ function App() {
           .then((res) => {
             if (res) {
               setLoggedIn(true);
+              navigate(pathname);
             }
           })
           .catch((err) => console.log(err));
@@ -196,7 +206,6 @@ function App() {
       (i) =>
         i.movieId === (movie.id || movie.movieId) && i.owner === currentUser._id
     );
-    console.log(movieCard)
     if (!movieCard) return;
     mainApi
       .deleteMovie(movieCard._id)
@@ -209,7 +218,7 @@ function App() {
   }
 
   const handleSignOut = () => {
-    localStorage.removeItem("token");
+    localStorage.clear();
     setCurrentUser({});
     setLoggedIn(false);
     navigate("/");
@@ -277,6 +286,10 @@ function App() {
                     component={Profile}
                     onEditProfile={handleEditProfile}
                     handleSignOut={handleSignOut}
+                    errorMessage={errorMessage}
+                    errorEmailProfile={errorEmailProfile}
+                    isSuccess={isSuccess}
+                    isSuccessText={isSuccessText}
                   />
                 </ProtectedRoute>
               }

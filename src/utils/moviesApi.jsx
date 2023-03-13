@@ -15,6 +15,7 @@ class MoviesApi {
     return fetch(`${this._url}`, {
       method: 'GET',
       headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
     }).then((res) => this.checkError(res));

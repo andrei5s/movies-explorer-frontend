@@ -13,16 +13,31 @@ import { CurrentUserContext } from "../context/currentUserContext";
       () => {
           setName(String(currentUser.name));
           setEmail(String(currentUser.email));
+          if(name === currentUser.name && email === currentUser.email){
+            setIsValid(false);
+          }
       },
       [currentUser]
     );
   
     function handleChangeName(evt) {
-      const { name } = evt.target;
+      const { name } = evt.target;      
       setName(evt.target.value);
       setErrors({...errors, [name] : evt.target.validationMessage});
       setIsValid(evt.target.closest('form').checkValidity());
     }
+
+    useEffect(()=>{
+      if(currentUser.name === name){
+        setIsValid(false);
+      }
+    },[name]);
+  
+    useEffect(()=>{
+      if(currentUser.email === email){
+        setIsValid(false);
+      }
+    },[email]);
   
     function handleChangeEmail(evt) {
       const { name } = evt.target;
@@ -75,12 +90,16 @@ import { CurrentUserContext } from "../context/currentUserContext";
           />
           <div className="form__line"></div>
           {errors?.email && (
+            <>
             <span className="profile__input-error">{errors.email}</span>
+            
+            </>
           )}
-          {isSuccess ? <p className="profile__edit-status">Изменения сохранены</p> :
+          <span className="register__error">{props.errorMessage}</span>
+          {isSuccess ? <p className="profile__edit-status">{props.isSuccessText}</p> :
           <span className="profile__edit-error">{errors?.email}</span>}
             <button
-              className={isValid ?"profile__edit" : "profile__edit_disabled"}
+              className={isValid ? "profile__edit" : "profile__edit_disabled"}
               disabled={!isValid}
               type="submit"
               onClick={handleSave}

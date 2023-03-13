@@ -81,8 +81,10 @@ class MainApi {
 
 export const mainApi = new MainApi({
     baseUrl: "https://api.movie.andrei5s.nomoredomains.club",
+   // baseUrl: 'http://localhost:3000',
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
     }
 });
   

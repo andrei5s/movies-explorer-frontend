@@ -1,5 +1,6 @@
 
 export const BASE_URL = "https://api.movie.andrei5s.nomoredomains.club"
+//const BASE_URL = 'http://localhost:3000'
 
 const reqest = ({
     url,
