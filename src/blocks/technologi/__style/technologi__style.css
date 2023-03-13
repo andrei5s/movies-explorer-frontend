@@ -1,0 +1,7 @@
+.technologi__style {
+    width: 54%;
+    margin: 100px auto 100px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+    grid-gap: 10px;
+}

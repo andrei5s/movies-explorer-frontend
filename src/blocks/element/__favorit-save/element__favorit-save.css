@@ -1,0 +1,17 @@
+        .element__favourit-save {
+            width: 30px;
+            height: 30px;
+            background: none;
+            background-repeat: no-repeat;
+            border-radius: 36px;
+            margin: 7px 14px 19px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            opacity: 1;
+        }
+        
+        .element__favourit-save:hover {
+            opacity: 0.8;
+        }

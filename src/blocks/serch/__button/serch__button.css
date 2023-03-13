@@ -1,0 +1,20 @@
+.serch__button {
+    background-image: url(../../../images/search-button.svg);
+    background-repeat: no-repeat;
+    width: 34px;
+    height: 34px;
+    font-size: 0;
+    border: none;
+    cursor: pointer;
+    background-color: #ffff;
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    bottom: 7px;
+    border-style: none;
+    box-shadow: inset;
+}
+
+.serch__button:hover {
+    opacity: 0.8;
+}

@@ -1,0 +1,39 @@
+.student__foto {
+    background: url(../../../images/student.jpg);
+    border-radius: 10px;
+    width: 270px;
+    height: 327px;
+    background-size: cover;
+    overflow: hidden;
+    position: absolute;
+    left: 73.44%;
+    right: 5.47%;
+    top: 120px;
+    bottom: 48.66%;
+}
+
+@media screen and (max-width: 1023px) {
+    .student__foto {
+        left: 60.29%;
+        right: 6.51%;
+        bottom: 48.29%;
+        width: 255px;
+        height: 307px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .student__foto {
+        left: 4.38%;
+        right: 4.38%;
+        bottom: 55.51%;
+        width: 292px;
+        height: 352px;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .student__foto {
+        width: 91%;
+    }
+}

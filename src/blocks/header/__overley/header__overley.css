@@ -1,0 +1,28 @@
+.header__overley {
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .header__overley {
+        display: flex;
+        justify-content: end;
+        position: fixed;
+        right: -100%;
+        margin: 0;
+    }
+    .header__overley_active {
+        right: 0;
+        background: rgba(0, 0, 0, 0.3);
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 9;
+        transition: right .5s;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .header__overley_active {
+        width: 100%;
+    }
+}
